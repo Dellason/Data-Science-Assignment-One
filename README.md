@@ -18,6 +18,8 @@
 
 ---
 
+> **Try it:** an interactive site in [`web/`](web/) turns the analysis into a budget-driven door map of Dublin, a rent estimator, a replay of the scraper and a cleaning lab.
+
 A two-notebook project that collects **1,900 rental listings** from the Dublin Rental Property
 Database, repairs the gaps and inconsistencies in them, and charts how property type, postcode,
 bedrooms and season relate to monthly rent.
@@ -87,6 +89,7 @@ Apartments dominate supply every month. Listings peak in April and fall away in 
 │   └── brief.pdf                      # original module brief
 ├── scripts/
 │   └── make_figures.py
+├── web/                               # interactive site (React + Vite)
 └── requirements.txt
 ```
 

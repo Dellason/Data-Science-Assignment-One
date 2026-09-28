@@ -32,8 +32,8 @@ bedrooms and season relate to monthly rent.
 - **Missing values filled with evidence, not defaults.** Gardens follow property type, lease
   lengths take the shared median and mode, parking is predicted with logistic regression, and
   listings without a postcode are set aside rather than invented.
-- **Clear findings.** Houses cost roughly twice as much as apartments in every postcode, and
-  Dublin 2, 4 and 6 lead the market.
+- **Clear findings.** A house typically rents for more than twice an apartment in the same
+  postcode, and Dublin 2, 4 and 6 lead the market.
 
 ## Pipeline
 
@@ -62,7 +62,7 @@ flowchart LR
 
 <p align="center"><img src="assets/figures/median-rent-by-postcode.png" alt="Median rent by postcode" width="820"></p>
 
-Apartments sit between roughly €1,300 and €2,300 a month across postcodes; houses between €3,000
+Apartments sit between roughly €1,400 and €2,300 a month across postcodes; houses between €3,000
 and €5,500. Central Dublin 2, 4 and 6 carry the highest rents.
 
 <p align="center"><img src="assets/figures/listings-per-month.png" alt="Listings per month" width="820"></p>

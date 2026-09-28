@@ -4,6 +4,7 @@ import { AreaRanking, MonthBars, PriceStrip } from "./charts";
 import Estimator from "./Estimator";
 import { ParseDemo, ScraperReplay } from "./Scraper";
 import Cleaning from "./Cleaning";
+import ThemeToggle from "./ThemeToggle";
 import {
   COUNTY_AREAS, MONTHS, POSTCODE_GRID, areaOf, euro, loadData, median,
   type Listing, type Model, type PropertyType,
@@ -81,15 +82,20 @@ export default function App() {
   return (
     <>
       <a className="skip" href="#main">Skip to the map</a>
-      <header className="wrap topbar">
-        <a className="brand" href="#main"><img src="./door.svg" width="26" height="26" alt="" />Dublin rent, door by door</a>
-        <nav aria-label="Sections">
-          <a href="#explore">Explore</a>
-          <a href="#estimate">Estimate</a>
-          <a href="#scraper">How it was built</a>
-          <a href="#data">Data</a>
-        </nav>
-      </header>
+      <div className="bar">
+        <header className="wrap topbar">
+          <a className="brand" href="#main"><img src="./door.svg" width="26" height="26" alt="" />Dublin rent, door by door</a>
+          <div className="topbar-end">
+            <nav aria-label="Sections">
+              <a href="#explore">Explore</a>
+              <a href="#estimate">Estimate</a>
+              <a href="#scraper">How it was built</a>
+              <a href="#data">Data</a>
+            </nav>
+            <ThemeToggle />
+          </div>
+        </header>
+      </div>
 
       <main id="main">
         <section className="wrap hero" aria-labelledby="title">

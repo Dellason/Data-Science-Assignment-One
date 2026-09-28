@@ -18,6 +18,18 @@
   --door-stroke: #16202a;
   --shadow: 0 1px 0 rgb(22 32 42 / 0.06), 0 18px 40px -28px rgb(22 32 42 / 0.45);
 
+  /* Glass. Panel fills are opaque enough that text contrast never depends on
+     what drifts behind them; the ambient glows are faint for the same reason.
+     Checked worst-case: every text colour clears 4.5:1, chart colours 3:1. */
+  --glass: rgb(248 249 246 / 0.62);
+  --glass-chrome: rgb(248 249 246 / 0.55);
+  --glass-edge: rgb(255 255 255 / 0.75);
+  --glass-shine: inset 0 1px 0 rgb(255 255 255 / 0.6);
+  --glass-blur: 16px;
+  --glow-1: rgb(47 95 107 / 0.09);
+  --glow-2: rgb(242 193 78 / 0.2);
+  --glow-3: rgb(42 120 214 / 0.07);
+
   --font: "Schibsted Grotesk Variable", system-ui, sans-serif;
   --code: "JetBrains Mono Variable", ui-monospace, monospace;
 
@@ -33,33 +45,39 @@
   --gutter: clamp(16px, 4vw, 48px);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    color-scheme: dark;
-    --paper: #121a21;
-    --paper-raised: #1a242d;
-    --ink: #e7ece8;
-    --ink-soft: #a7b3b8;
-    --rule: #2b3842;
-    --liffey: #7fb4bf;
-    --liffey-soft: #1f3a41;
-    --apartment: #3987e5;
-    --house: #d95926;
-    --warn: #ff8a80;
-    --focus: #9fd0da;
-    --door-stroke: #0b1117;
-    --shadow: 0 1px 0 rgb(0 0 0 / 0.3), 0 18px 40px -28px rgb(0 0 0 / 0.8);
-  }
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #121a21;
+  --paper-raised: #1a242d;
+  --ink: #e7ece8;
+  --ink-soft: #a7b3b8;
+  --rule: #2b3842;
+  --liffey: #7fb4bf;
+  --liffey-soft: #1f3a41;
+  --apartment: #3987e5;
+  --house: #d95926;
+  --warn: #ff8a80;
+  --focus: #9fd0da;
+  --door-stroke: #0b1117;
+  --shadow: 0 1px 0 rgb(0 0 0 / 0.3), 0 18px 40px -28px rgb(0 0 0 / 0.8);
+  --glass: rgb(27 38 48 / 0.66);
+  --glass-chrome: rgb(27 38 48 / 0.6);
+  --glass-edge: rgb(255 255 255 / 0.08);
+  --glass-shine: inset 0 1px 0 rgb(255 255 255 / 0.05);
+  --glow-1: rgb(127 180 191 / 0.12);
+  --glow-2: rgb(242 193 78 / 0.08);
+  --glow-3: rgb(57 135 229 / 0.12);
 }
 
 *, *::before, *::after { box-sizing: border-box; }
+[id] { scroll-margin-top: 76px; }
 
 html { background: var(--paper); }
 
 body {
   margin: 0;
   min-width: 320px;
-  background: var(--paper);
+  background: transparent;
   color: var(--ink);
   font-family: var(--font);
   font-size: var(--step-0);
@@ -89,8 +107,10 @@ button, input, select { font: inherit; color: inherit; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 /* ---------- Top bar ---------- */
+.bar { position: sticky; top: 0; z-index: 20; background: var(--glass-chrome); border-bottom: 1px solid var(--glass-edge); backdrop-filter: blur(14px) saturate(160%); }
 .topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 18px; font-size: var(--step--1); }
 .topbar nav { display: flex; gap: clamp(12px, 3vw, 28px); flex-wrap: wrap; }
+.topbar-end { display: flex; align-items: center; gap: clamp(12px, 3vw, 28px); }
 .topbar a { text-decoration: none; color: var(--ink-soft); }
 .topbar a:hover { color: var(--ink); }
 @media (max-width: 560px) { .topbar nav { display: none; } }
@@ -104,7 +124,7 @@ button, input, select { font: inherit; color: inherit; }
 
 /* ---------- Hero ---------- */
 .hero { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(28px, 5vw, 72px); align-items: start; padding-block: clamp(16px, 3vw, 40px) clamp(56px, 8vw, 96px); }
-.hero-copy { display: grid; gap: 22px; position: sticky; top: 20px; }
+.hero-copy { display: grid; gap: 22px; position: sticky; top: 84px; }
 .hero-copy .lede { font-size: var(--step-1); line-height: 1.4; color: var(--ink-soft); max-width: 30ch; }
 .verdict { font-size: var(--step-1); line-height: 1.35; max-width: 32ch; min-height: 3.2em; }
 .verdict strong { font-weight: 650; }
@@ -119,7 +139,7 @@ button, input, select { font: inherit; color: inherit; }
 .control-label { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-size: var(--step--1); color: var(--ink-soft); }
 .control-label output { font-size: var(--step-2); font-weight: 650; color: var(--ink); letter-spacing: -0.02em; }
 
-.segmented { display: inline-flex; flex-wrap: wrap; gap: 4px; padding: 4px; border-radius: 999px; background: var(--paper-raised); border: 1px solid var(--rule); width: fit-content; }
+.segmented { display: inline-flex; flex-wrap: wrap; gap: 4px; padding: 4px; border-radius: 999px; background: var(--glass-chrome); border: 1px solid var(--glass-edge); box-shadow: var(--glass-shine); backdrop-filter: blur(10px) saturate(150%); width: fit-content; }
 .segmented button { border: 0; background: none; padding: 7px 14px; border-radius: 999px; cursor: pointer; font-size: var(--step--1); color: var(--ink-soft); display: inline-flex; align-items: center; gap: 7px; }
 .segmented button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
 .swatch { width: 9px; height: 9px; border-radius: 3px; display: inline-block; }
@@ -157,7 +177,7 @@ select { background: var(--paper-raised); border: 1px solid var(--rule); border-
 .county.out { opacity: 0.55; }
 
 /* ---------- Panels and charts ---------- */
-.panel { background: var(--paper-raised); border: 1px solid var(--rule); border-radius: 18px; padding: clamp(18px, 3vw, 28px); box-shadow: var(--shadow); }
+.panel { background: var(--glass); border: 1px solid var(--glass-edge); border-radius: 18px; padding: clamp(18px, 3vw, 28px); box-shadow: var(--glass-shine), var(--shadow); backdrop-filter: blur(var(--glass-blur)) saturate(160%); }
 .grid-2 { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(20px, 3vw, 36px); }
 .grid-explore { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(20px, 3vw, 36px); align-items: start; }
 @media (max-width: 900px) { .grid-2, .grid-explore { grid-template-columns: minmax(0, 1fr); } }
@@ -214,7 +234,7 @@ table.data td.num, table.data th.num { text-align: right; }
 /* ---------- Cleaning ---------- */
 .decisions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
 @media (max-width: 700px) { .decisions { grid-template-columns: minmax(0, 1fr); } }
-.decision { border: 1px solid var(--rule); border-radius: 14px; padding: 16px 18px; display: grid; gap: 8px; align-content: start; }
+.decision { border: 1px solid var(--glass-edge); background: var(--glass-chrome); box-shadow: var(--glass-shine); backdrop-filter: blur(10px) saturate(150%); border-radius: 14px; padding: 16px 18px; display: grid; gap: 8px; align-content: start; }
 .decision h3 { font-size: var(--step-0); }
 .decision .count { font-size: var(--step-2); font-weight: 650; letter-spacing: -0.02em; }
 .variant-list { display: grid; gap: 6px; font-size: var(--step--1); }
@@ -229,4 +249,25 @@ table.data td.num, table.data th.num { text-align: right; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
+
+/* ---------- Glass, theme toggle and fallbacks ---------- */
+.ambient { position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(42vmax 42vmax at 88% 6%, var(--glow-1), transparent 70%),
+    radial-gradient(40vmax 40vmax at 4% 58%, var(--glow-2), transparent 70%),
+    radial-gradient(46vmax 36vmax at 62% 104%, var(--glow-3), transparent 70%); }
+.theme-toggle { display: inline-grid; place-items: center; width: 36px; height: 36px; border-radius: 999px; border: 1px solid var(--glass-edge); background: var(--glass-chrome); box-shadow: var(--glass-shine); color: var(--ink); cursor: pointer; }
+.theme-toggle:hover { color: var(--liffey); }
+html.theme-anim, html.theme-anim *, html.theme-anim *::before, html.theme-anim *::after {
+  transition: background-color 280ms ease, border-color 280ms ease, color 280ms ease, fill 280ms ease, stroke 280ms ease !important;
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  :root { --glass: #f6f7f4; --glass-chrome: #f3f5f1; }
+  :root[data-theme="dark"] { --glass: #1a242d; --glass-chrome: #18222a; }
+}
+@media (prefers-reduced-transparency: reduce) {
+  :root { --glass: #f6f7f4; --glass-chrome: #f3f5f1; }
+  :root[data-theme="dark"] { --glass: #1a242d; --glass-chrome: #18222a; }
+  .panel, .segmented, .decision, .bar { backdrop-filter: none; }
 }

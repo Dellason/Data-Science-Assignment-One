@@ -4,12 +4,27 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Explore a year of Dublin rental listings by postcode, estimate a rent, and see how the data was scraped and cleaned." />
-    <meta name="theme-color" content="#ECEFEA" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#121A21" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#ecefea" />
+    <script>
+      // Resolve the theme before first paint (mirrors src/theme.ts).
+      (function () {
+        var t = "light";
+        try {
+          var s = localStorage.getItem("jmd-theme");
+          t = s === "light" || s === "dark" ? s : matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        } catch (e) {
+          try { t = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"; } catch (e2) {}
+        }
+        document.documentElement.dataset.theme = t;
+        document.documentElement.style.colorScheme = t;
+        document.querySelector('meta[name="theme-color"]').content = t === "dark" ? "#121a21" : "#ecefea";
+      })();
+    </script>
     <link rel="icon" href="./door.svg" type="image/svg+xml" />
     <title>Dublin rent, door by door</title>
   </head>
   <body>
+    <div class="ambient" aria-hidden="true"></div>
     <div id="root"></div>
     <noscript>This site needs JavaScript to load its 1,900 listings.</noscript>
     <script type="module" src="/src/main.tsx"></script>

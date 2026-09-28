@@ -1,0 +1,51 @@
+{
+ "intercept": 7.293953004299003,
+ "baseline": {
+  "area": "Dublin 1",
+  "bedrooms": 1,
+  "type": "Apartment"
+ },
+ "coefficients": {
+  "house": 0.43971,
+  "area:Dublin 10": -0.141316,
+  "area:Dublin 11": -0.146925,
+  "area:Dublin 12": -0.080369,
+  "area:Dublin 13": -0.107636,
+  "area:Dublin 14": -0.097855,
+  "area:Dublin 15": -0.10644,
+  "area:Dublin 16": -0.07795,
+  "area:Dublin 17": -0.126057,
+  "area:Dublin 18": -0.050751,
+  "area:Dublin 2": 0.134055,
+  "area:Dublin 20": -0.187625,
+  "area:Dublin 22": -0.206716,
+  "area:Dublin 24": -0.146199,
+  "area:Dublin 3": 0.019616,
+  "area:Dublin 4": 0.200475,
+  "area:Dublin 5": -0.066763,
+  "area:Dublin 6": 0.035446,
+  "area:Dublin 6W": -0.007308,
+  "area:Dublin 7": -0.062305,
+  "area:Dublin 8": -0.034502,
+  "area:Dublin 9": -0.115521,
+  "area:North County Dublin": -0.120157,
+  "area:South County Dublin": -0.079048,
+  "beds:2": 0.289921,
+  "beds:3": 0.631361,
+  "beds:4": 0.489485,
+  "beds:5": 0.600632,
+  "baths": 0.021596,
+  "parking": 0.004922,
+  "garden": 0.027351
+ },
+ "interval": [
+  -0.438195,
+  0.36712
+ ],
+ "evaluation": {
+  "folds": 5,
+  "mae": 613,
+  "r2": 0.609,
+  "withinFifteenPercent": 0.316
+ }
+}

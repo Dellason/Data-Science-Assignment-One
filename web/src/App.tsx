@@ -10,7 +10,7 @@ import {
   type Listing, type Model, type PropertyType,
 } from "./data";
 
-const PORTFOLIO = "https://jjmensah.github.io/enam_portfolio/";
+const PORTFOLIO = "https://dellason.github.io/";
 const CASE_STUDY = `${PORTFOLIO}projects/dublin-rental-market/`;
 const AREAS = [...POSTCODE_GRID.map(p => p.area), ...COUNTY_AREAS];
 

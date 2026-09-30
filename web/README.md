@@ -2,7 +2,7 @@
 
 An interactive site for the Dublin rental analysis. Visitors set a budget and watch a door map of Dublin's postcodes light up, explore any area's listings, estimate a rent with a model trained on the data, replay the scraper's crawl, and flip the cleaning decisions to see what they changed.
 
-**Live:** https://jjmensah.github.io/enam_portfolio/lab/dublin/, served from the portfolio's `public/lab/dublin/`. Run `npm run lab:dublin` in `enam_portfolio` to publish a new build.
+**Live:** https://dellason.github.io/lab/dublin/, served from the portfolio's `public/lab/dublin/`. Run `npm run lab:dublin` in `enam_portfolio` to publish a new build.
 
 ## Sections
 

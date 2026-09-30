@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" fill="none">
+  <title>Dublin Rental Market Analysis</title>
+  <rect width="1600" height="1000" fill="#c8d7e9"/>
+  <!-- Faint grid behind the skyline -->
+  <g stroke="#1a1f2c" stroke-opacity="0.08" stroke-width="2">
+    <path d="M0 250H1600M0 400H1600M0 550H1600M0 700H1600"/>
+  </g>
+  <!-- Median marker, behind the skyline -->
+  <g stroke="#1a1f2c" stroke-width="4" stroke-dasharray="14 12" stroke-linecap="round">
+    <path d="M200 430H1440"/>
+  </g>
+  <rect x="1290" y="398" width="160" height="42" rx="21" fill="#1a1f2c"/>
+  <text x="1370" y="426" text-anchor="middle" font-family="IBM Plex Mono, Menlo, monospace" font-size="20" fill="#fcfcfb">median</text>
+  <!-- Skyline: each building is a bar, houses in orange, apartments in blue -->
+  <g stroke="#1a1f2c" stroke-width="5" stroke-linejoin="round">
+    <path d="M230 780V520h110v260" fill="#2a78d6"/>
+    <path d="M360 780V330l60-50 60 50v450" fill="#eb6834"/>
+    <path d="M500 780V470h120v310" fill="#2a78d6"/>
+    <path d="M640 780V300l55-45 55 45v480" fill="#eb6834"/>
+    <path d="M770 780V540h100v240" fill="#2a78d6"/>
+    <path d="M890 780V360l60-50 60 50v420" fill="#eb6834"/>
+    <path d="M1030 780V500h110v280" fill="#2a78d6"/>
+    <path d="M1160 780V390l55-45 55 45v390" fill="#eb6834"/>
+    <path d="M1290 780V560h100v220" fill="#2a78d6"/>
+  </g>
+  <!-- Windows -->
+  <g fill="#fcfcfb" fill-opacity="0.85">
+    <rect x="255" y="560" width="22" height="30" rx="3"/><rect x="293" y="560" width="22" height="30" rx="3"/>
+    <rect x="255" y="630" width="22" height="30" rx="3"/><rect x="293" y="630" width="22" height="30" rx="3"/>
+    <rect x="528" y="510" width="24" height="30" rx="3"/><rect x="568" y="510" width="24" height="30" rx="3"/>
+    <rect x="528" y="580" width="24" height="30" rx="3"/><rect x="568" y="580" width="24" height="30" rx="3"/>
+    <rect x="528" y="650" width="24" height="30" rx="3"/><rect x="568" y="650" width="24" height="30" rx="3"/>
+    <rect x="795" y="580" width="20" height="28" rx="3"/><rect x="828" y="580" width="20" height="28" rx="3"/>
+    <rect x="1058" y="540" width="22" height="30" rx="3"/><rect x="1096" y="540" width="22" height="30" rx="3"/>
+    <rect x="1058" y="610" width="22" height="30" rx="3"/><rect x="1096" y="610" width="22" height="30" rx="3"/>
+    <rect x="1315" y="600" width="20" height="28" rx="3"/><rect x="1348" y="600" width="20" height="28" rx="3"/>
+    <rect x="398" y="370" width="44" height="54" rx="22"/><rect x="673" y="340" width="44" height="54" rx="22"/>
+    <rect x="928" y="400" width="44" height="54" rx="22"/><rect x="1193" y="430" width="44" height="54" rx="22"/>
+  </g>
+  <!-- Georgian doors -->
+  <g stroke="#1a1f2c" stroke-width="5" fill="#1a1f2c">
+    <path d="M405 780v-70a15 15 0 0 1 30 0v70"/><path d="M680 780v-70a15 15 0 0 1 30 0v70"/>
+    <path d="M935 780v-70a15 15 0 0 1 30 0v70"/><path d="M1200 780v-70a15 15 0 0 1 30 0v70"/>
+  </g>
+  <!-- Ground and the Liffey -->
+  <path d="M160 780H1460" stroke="#1a1f2c" stroke-width="6" stroke-linecap="round"/>
+  <path d="M180 850c75-22 155-22 230 0s155 22 230 0 155-22 230 0 155 22 230 0 155-22 230 0" stroke="#1a1f2c" stroke-opacity="0.35" stroke-width="5" stroke-linecap="round"/>
+</svg>
